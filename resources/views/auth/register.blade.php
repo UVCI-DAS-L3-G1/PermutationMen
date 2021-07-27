@@ -22,8 +22,8 @@
                 <x-jet-input id="birthdate" class="block mt-1 w-full" type="date" name="birthdate" :value="old('birthdate')" required autofocus autocomplete="birthdate" />
             </div>
             <div class="mt-4">
-                <x-jet-label for="office_phone" value="{{ __('Téléphone office') }}" />
-                <x-jet-input id="office_phone" class="block mt-1 w-full" type="text" name="office_phone" :value="old('office_phone')" required autofocus autocomplete="office_phone" />
+                <x-jet-label for="mobile_phone" value="{{ __('Téléphone mobile') }}" />
+                <x-jet-input id="mobile_phone" class="block mt-1 w-full" type="text" name="mobile_phone" :value="old('mobile_phone')" required autofocus autocomplete="mobile_phone" />
             </div>
             <div class="mt-4">
                 <x-jet-label for="office_phone" value="{{ __('Téléphone du bureau') }}" />
@@ -74,3 +74,4 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
