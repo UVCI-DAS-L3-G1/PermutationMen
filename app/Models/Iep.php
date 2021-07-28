@@ -1,10 +1,10 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Iep extends Model 
+class Iep extends Model
 {
 
     protected $table = 'ieps';

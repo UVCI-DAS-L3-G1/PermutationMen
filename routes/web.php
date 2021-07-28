@@ -1,5 +1,9 @@
 <?php
-
+use App\Http\Livewire\Crud\ShowDiscipline;
+use App\Http\Livewire\Crud\ShowDren;
+use App\Http\Livewire\Crud\ShowEmploi;
+use App\Http\Livewire\Crud\ShowFonction;
+use App\Http\Livewire\Crud\ShowParametre;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +21,14 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
+    Route::get('/parametres', ShowParametre::class)->name('parametres');
+    Route::get('/drens', ShowDren::class)->name('drens');
+    Route::get('/emplois', ShowEmploi::class)->name('emplois');
+    Route::get('/fonctions', ShowFonction::class)->name('fonctions');
+    Route::get('/disciplines', ShowDiscipline::class)->name('disciplines');
+});
