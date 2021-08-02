@@ -1,10 +1,10 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Agent extends Model 
+class Agent extends Model
 {
 
     protected $table = 'agents';

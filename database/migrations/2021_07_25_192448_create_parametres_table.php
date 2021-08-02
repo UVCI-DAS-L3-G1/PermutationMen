@@ -8,7 +8,7 @@ class CreateParametresTable extends Migration {
 	public function up()
 	{
 		Schema::create('parametres', function(Blueprint $table) {
-			$table->string('attribut', 255)->unique()->primary();
+			$table->string('id', 255)->unique()->primary();
 			$table->string('valeur', 255);
 		});
 	}

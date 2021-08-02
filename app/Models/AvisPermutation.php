@@ -1,10 +1,10 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AvisPermutation extends Model 
+class AvisPermutation extends Model
 {
 
     protected $table = 'avis_permutations';
