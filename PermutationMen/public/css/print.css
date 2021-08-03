@@ -1,0 +1,148 @@
+body {
+  background: rgb(204,204,204);
+}
+page {
+  background: white;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+page[size="A4"] {  
+  width: 21cm;
+  height: 29.8cm;
+}
+page[size="A4"][layout="landscape"] {
+  width: 29.7cm;
+  height: 21cm;  
+}
+page[size="A3"] {
+  width: 29.7cm;
+  height: 42cm;
+}
+page[size="A3"][layout="landscape"] {
+  width: 42cm;
+  height: 29.7cm;  
+}
+page[size="A5"] {
+  width: 14.8cm;
+  height: 21cm;
+}
+page[size="A5"][layout="landscape"] {
+  width: 21cm;
+  height: 14.8cm;  
+}
+.Conteneur{
+  width: 95%;
+  margin: auto;
+}
+.Conteneur2{
+  width: 95%;
+  margin: auto;
+}
+.Conteneur3{
+  margin-top: 50px;
+}
+.headerfooter{
+  width: 100%;
+  font-weight: bold;
+  border-color: white;
+  margin: -5px;
+  font-size: small;
+}
+.headerfooter2{
+  width: 100%;
+  font-weight: bold;
+  border-color: white;
+  margin: -5px;
+}
+.random1{
+  margin-top: -10px;
+  width: 100%;
+  font-size: small;
+}
+.randomx{
+  margin-top: 0.5px;
+  width: 100%;
+  font-size: small;
+}
+.randomz{
+  margin-top: 0.5px;
+  width: 100%;
+}
+.random2{
+  margin-top: 1px;
+  width: 100%;
+  font-size: small;
+}
+.center{
+  text-align: center;
+}
+.Pos{
+  float: left;
+}
+.ratio1{
+  width: 25%;
+  text-align: center;
+}
+.ratiox{
+  width: 25%;
+  text-align: center;
+  font-size: small;
+}
+.ratio2{
+  width: 75%;
+  text-align: center;
+}
+.ratio3{
+  width: 20%;
+  text-align: center;
+}
+.ratio4{
+  width: 50%;
+  text-align: center;
+}
+.ratio5{
+  width: 50%;
+  text-align: center;
+}
+.form{
+  width: 75%;
+  border: 1px solid black;
+}
+.form2{
+  width: 35%;
+  border: 1px solid black;
+}
+.form3{
+  width: 20%;
+  border: 1px solid black;
+}
+.form4{
+  width: 55%;
+  border: 1px solid black;
+}
+.title{
+  padding: 15px;
+  border: 1px solid black;
+  text-align: center;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+p {
+  line-height : 0.5;
+}
+table, tr, th, td{
+  border: 1px solid white;
+}
+#Sign{
+  text-align: center;
+  vertical-align: top;
+}
+@media print {
+  body, page {
+    margin: 0;
+    box-shadow: 0;
+  }
+}
