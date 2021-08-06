@@ -63,4 +63,21 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    const ROLE=['Utilisateur'=>1,"Admin"=>2,"Super admin"=>3];
+    public function user(){
+        return $this->hasOne(Agent::class,'id');
+    }
+    public function isAdmin(){
+        if($this->isSuperAdmin()) return true;
+        return $this->user_type==2;
+    }
+    public function isSuperAdmin(){
+        return $this->user_type==3;
+    }
+    public function isUser(){
+        return $this->user_type==1;
+    }
+    public function role(){
+        return array_search($this->attributes['user_type'],self::ROLE);
+    }
 }

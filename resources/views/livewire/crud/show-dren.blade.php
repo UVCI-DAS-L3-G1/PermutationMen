@@ -1,19 +1,21 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         {{ $mainTitle }}
+
     </h2>
 </x-slot>
 
 
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
         <div class="flex justify-center bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <div class="px-4 py-3">
 
                     {{--Bouton de creation--}}
                 <div >
                     <x-jet-button wire:click='openModal'>
-                        Ajouter
+                        Ajouter une DREN
                     </x-jet-button>
                 </div>
 
@@ -21,18 +23,19 @@
 
                 @if ($drens->count())
                 <div class="mt-4">
-                    <table >
+                    <table class="table table-fixed w-full">
                         <thead>
                             <tr class="bg-gray-100">
-                                <!--<th class="px-4 py-2 w-20">No.</th>-->
-                                <th class="px-4 py-2">Nom</th>
+                                <th class="px-4 py-2 w-20">No.</th>
+                                <th class="px-4 py-2 ">Nom</th>
                                 <th class="px-4 py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($drens as $dren)
+                            @foreach($drens as $i=>$dren)
+
                             <tr>
-                                <!--<td class="border px-4 py-2">{{ $dren->id }}</td>-->
+                                <td class="border px-4 py-2">{{ $i+1 }}</td>
                                 <td class="border px-4 py-2">{{ $dren->nom }}</td>
                                 <td class="border px-4 py-2 text-right">
                                     <x-jet-button wire:click="edit({{ $dren->id }})">
@@ -55,44 +58,33 @@
                 {{$drens->links()}}
                 </div>
                 @else
-                <div>
+                <div class="mt-4">
                     <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
                         <p class="content-center">Veuillez ajouter des éléments</p>
                     </h2>
                 </div>
+                @endif
             </div>
-            @endif
-            {{--Dialog Modal --}}
-            <div>
-                <x-jet-dialog-modal wire:model='isModalOpen'>
-                    <x-slot name='title'>
-                        {{ $dialogTitle }}
-                    </x-slot>
-                    <x-slot name='content'>
 
-                        <div>
-                            <x-jet-label for="nom" value="">Valeur</x-jet-label>
-                            <x-jet-input wire:model.defer='dren.nom' type="text" name="nom" required
-                                class="mt-1 w-full"></x-jet-input>
-                            <x-jet-input-error for="nom" class="mt-2" />
-                        </div>
-                        
-                    </x-slot>
-
-                    <x-slot name='footer'>
-
-                        <x-jet-secondary-button wire:click="closeModal">
-                            {{ __('Fermer') }}
-                        </x-jet-secondary-button>
-                        <x-jet-action-message class="mr-3" on="saved">
-                            {{ __('Enregistré.') }}
-                        </x-jet-action-message>
-                        <x-jet-button wire:click="store">
-                            {{ __('Enregistrer') }}
-                        </x-jet-button>
-                    </x-slot>
-                </x-jet-dialog-modal>
-            </div>
 
         </div>
+
+
+
+            <x-dialog-form>
+
+                <x-slot name='title'>DREN</x-slot>
+                <x-slot name='description'>Saisir le informations de la DREN</x-slot>
+
+                <x-jet-label for="nom" value="Nom"></x-jet-label>
+                <x-jet-input wire:model.defer='dren.nom' type="text" name="nom" required
+                    class="mt-1 w-full">
+                </x-jet-input>
+                <x-jet-input-error for="nom" class="mt-2" />
+
+            </x-dialog-form>
+
+
+
+
     </div>

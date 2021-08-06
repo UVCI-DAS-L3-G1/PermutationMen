@@ -39,9 +39,9 @@ class ShowDiscipline extends CrudComponent
         return  Discipline::findOrFail($id);
     }
 
-    public function resetManyData(){
-
-
+    protected function rules()
+    {
+        return ['discipline.nom'=>'required|string|unique:disciplines,nom,'.$this->discipline->id];
     }
 
 
@@ -51,6 +51,7 @@ class ShowDiscipline extends CrudComponent
     }
     public function render()
     {
+
         return view('livewire.crud.show-discipline',['disciplines'=>Discipline::paginate(50)]);
     }
 }

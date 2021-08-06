@@ -15,11 +15,6 @@
                         Ajouter
                     </x-jet-button>
                 </div>
-                <!--<div class="ml-4">
-                    <x-jet-button wire:click='openManyItemModal'>
-                        Ajouter plusieurs DREN
-                    </x-jet-button>
-                </div>-->
                 </div>
 
                 @if ($emplois->count())
@@ -33,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($emplois as $emploi)
+                            @foreach($emplois as $i=>$emploi)
                             <tr>
                                 <!--<td class="border px-4 py-2">{{ $emploi->id }}</td>-->
                                 <td class="border px-4 py-2">{{ $emploi->nom }}</td>
@@ -66,29 +61,18 @@
             </div>
             @endif
             {{--Dialog Modal --}}
-            <div>
-                <x-jet-dialog-modal wire:model='isModalOpen'>
-                    <x-slot name='title'>
-                        Editer
-                    </x-slot>
-                    <x-slot name='content'>
-                        <div>
-                            <x-jet-label for="nom" value="">Valeur</x-jet-label>
-                            <x-jet-input wire:model.defer='emploi.nom' type="text" name="nom" required
-                                class="mt-1 w-full"></x-jet-input>
-                            <x-jet-input-error for="nom" class="mt-2" />
-                        </div>
-                    </x-slot>
-                    <x-slot name='footer'>
-                        <x-jet-secondary-button wire:click="closeModal">
-                            {{ __('Fermer') }}
-                        </x-jet-secondary-button>
-                        <x-jet-button wire:click="store">
-                            {{ __('Enregistrer') }}
-                        </x-jet-button>
-                    </x-slot>
-                </x-jet-dialog-modal>
-            </div>
+            <x-dialog-form>
+
+                <x-slot name='title'>Emploi</x-slot>
+                <x-slot name='description'>Définir un emploi</x-slot>
+
+                <x-jet-label for="nom" value="Nom"></x-jet-label>
+                <x-jet-input wire:model.defer='emploi.nom' type="text" name="nom" required
+                    class="mt-1 w-full">
+                </x-jet-input>
+                <x-jet-input-error for="nom" class="mt-2" />
+
+            </x-dialog-form>
 
         </div>
     </div>
