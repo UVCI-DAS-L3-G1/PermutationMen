@@ -2,60 +2,67 @@
 
 namespace App\Http\Livewire\Crud;
 
-use Livewire\Component;
 use App\Models\Parametre;
-use App\Pct\Traits\DialogManager;
+use App\Http\Livewire\Crud\CrudComponent;
+use App\Pct\AppConfig;
+use Livewire\WithPagination;
 
-//use function PHPUnit\Framework\isNull;
-
-class ShowParametre extends Component
+class ShowParametre extends CrudComponent
 {
+    use WithPagination;
+    //protected $paginationTheme = 'bootstrap';
+    const MAIN_TITLE="Paramètres de l'application";
 
-   
 
-    public $parametre_id;
-    public $valeur;
-    protected $rules =['id'=>'required|string',
-                        'valeur'=>'required|string'];
+
+    public ?Parametre $parametre;
+    protected array $rules =[];
+
+    public function resetData()
+    {
+        $this->parametre=new Parametre();
+    }
+
+    public function save()
+    {
+        $this->parametre->save();
+    }
+
+
+    public function loadData($id)
+    {
+        $this->parametre = $this->getData($id);
+    }
+
+    public function getData($id){
+        return  Parametre::findOrFail($id);
+    }
+
+    protected function rules()
+    {
+        return ['parametre.valeur'=>'required|string'];
+    }
+
+
+    public function mount(){
+        $this->parametre??$this->parametre=new Parametre();
+        $this->mainTitle=showParametre::MAIN_TITLE;
+
+    }
 
     public function render()
     {
-        return view('livewire.crud.show-parametre',
-        ['parametres'=>Parametre::orderBy('id')->paginate(10)]);
+
+        AppConfig::annee();
+        AppConfig::ministere();
+        AppConfig::drh();
+        AppConfig::adresse();
+        AppConfig::telephone();
+        AppConfig::pagination();
+        AppConfig::auto_reservation();
+        AppConfig::auto_reservation();
+
+        return view('livewire.crud.show-parametre',['parametres'=>Parametre::orderBy('attribut')->paginate(50)]);
     }
-    public function resetData(){
-
-    }
-    public function initializeData()
-    {
-        //$this->dren = new Dren();
-    }
-
-    public function delete ($id){
-
-        $parametre = Parametre::where('id',$id)->first();
-        if(isset($parametre))
-        {
-            $parametre->delete();
-        }
-
-        session()->flash('message','Paramètre supprimer avec succès');
-    }
-    public function edit($id){
-        $parametre=Parametre::findOrFail($id);
-        $this->parametre_id=$parametre->id;
-        $this->valeur=$parametre->valeur;
-        $this->openModal();
-
-
-    }
-    public function store(){
-        $this->validate();
-        Parametre::updateOrCreate(
-            ['id'=>$this->parametre_id,
-            'valeur'=>$this->valeur]
-        );
-        session()->flash('message','Paramètre enregistré avec succès');
-    }
-
 }
+

@@ -25,9 +25,9 @@ class ShowEmploi extends CrudComponent
     {
         $this->emploi->save();
     }
-    public function saveMany()
+    protected function rules()
     {
-
+        return ['emploi.nom'=>'required|string|unique:emplois,nom,'.$this->emploi->id];
     }
 
     public function loadData($id)
@@ -39,10 +39,7 @@ class ShowEmploi extends CrudComponent
         return  Emploi::findOrFail($id);
     }
 
-    public function resetManyData(){
 
-
-    }
 
 
     public function mount(){

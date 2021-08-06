@@ -11,4 +11,14 @@ class Ecole extends Model
     public $timestamps = false;
     protected $fillable = array('iep_id', 'nom');
 
+    public function iep(){
+        return $this->belongsTo(Iep::class);
+    }
+    public function avisPermutations(){
+        return $this->hasMany(AvisPermutation::class,'ecole_destination_id');
+    }
+    public function agents(){
+        return $this->hasMany(Agent::class);
+    }
+
 }

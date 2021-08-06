@@ -39,9 +39,9 @@ class ShowFonction extends CrudComponent
         return  Fonction::findOrFail($id);
     }
 
-    public function resetManyData(){
-
-
+    protected function rules()
+    {
+        return ['fonction.nom'=>'required|string|unique:fonctions,nom,'.$this->fonction->id];
     }
 
 

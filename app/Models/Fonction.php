@@ -11,4 +11,8 @@ class Fonction extends Model
     public $timestamps = false;
     protected $fillable = array('nom');
 
+    public function agents(){
+        return $this->hasMany(Agent::class);
+    }
+
 }

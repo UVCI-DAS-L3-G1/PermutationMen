@@ -11,15 +11,15 @@ class ShowDren extends CrudComponent
     use WithPagination;
     //protected $paginationTheme = 'bootstrap';
 
-    const MAIN_TILTE="Liste des Direction Régionales";
+    const MAIN_TILTE="Liste des Directions Régionales";
     public ?Dren $dren;
     public  $manyDrens=[];
-    protected array $rules =['dren.nom'=>'required|string|unique:drens'];
-    
+
+
     public function resetData()
     {
-
         $this->dren=new Dren();
+
     }
 
     public function save()
@@ -31,23 +31,29 @@ class ShowDren extends CrudComponent
     public function loadData($id)
     {
         $this->dren = $this->getData($id);
+
     }
 
     public function getData($id){
         return  Dren::findOrFail($id);
     }
-
+    protected function rules()
+    {
+        return ['dren.nom'=>'required|string|unique:drens,nom,'.$this->dren->id];
+    }
 
 
 
     public function mount(){
+
         $this->dren??$this->dren=new Dren();
         $this->mainTitle=ShowDren::MAIN_TILTE;
+
 
     }
     public function render()
     {
 
-        return view('livewire.crud.show-dren',['drens'=>Dren::paginate(50)]);
+        return view('livewire.crud.show-dren',['drens'=>Dren::orderBy('nom')->paginate(5)]);
     }
 }

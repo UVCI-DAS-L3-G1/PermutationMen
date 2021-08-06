@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Pct\AppConfig;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -35,7 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'mobile_phone'=>$input['mobile_phone'],
             'office_phone'=>$input['office_phone'],
             'birthdate' => $input['birthdate'],
-            'user_type' =>isset($input['user_type'])?$input['user_type']: 1,
+            'user_type' =>AppConfig::isFirstUser()?3: 1,
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);

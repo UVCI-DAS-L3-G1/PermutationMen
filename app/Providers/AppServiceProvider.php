@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\Blade;
+use App\View\Components\DialogForm;
+use App\View\Components\ApplyButton;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blade::component('dialog-form', DialogForm::class);
+        Blade::component('apply-button', ApplyButton::class);
         //
     }
 }

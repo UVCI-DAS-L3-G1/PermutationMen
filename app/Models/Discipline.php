@@ -10,5 +10,9 @@ class Discipline extends Model
     protected $table = 'disciplines';
     public $timestamps = false;
     protected $fillable = array('nom');
+    
+    public function agents(){
+        return $this->hasMany(Agent::class);
+    }
 
 }
