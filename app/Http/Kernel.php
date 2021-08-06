@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'registration_completed'=>\App\Http\Middleware\EnsureUserCompleteRegistration::class,
         'canPublish'=>\App\Http\Middleware\EnsureAutorizationToPublish::class,
+        'isSuperAdmin'=>\App\Http\Middleware\EnsureIsSuperAdmin::class,
     ];
 }

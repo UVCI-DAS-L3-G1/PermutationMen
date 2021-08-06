@@ -1,12 +1,18 @@
 @component('mail::message')
-# Introduction
+ 
+{{$agent->user->name}}<br>
+E-mail : {{$agent->user->email}}<br>
+Tél.: {{$agent->user->mobile_phone}}<br>
+Tél.:{{$agent->user->office_phone}}<br>
+Dren:{{$agent->ecole->iep->dren->nom}}<br>
+IEP:{{$agent->ecole->iep->nom}}<br>
+Ecole:{{$agent->ecole->nom}}<br>
 
-The body of your message.
+n'est plus disposé à permuter avec vous.<br>
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
 
-Thanks,<br>
+
+Merci,<br>
 {{ config('app.name') }}
 @endcomponent
+

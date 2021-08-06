@@ -152,7 +152,7 @@ class ShowAvisPermutation extends Component
 
         redirect()->route('acte-permutation',['id'=>$avis_id]);
     }
-    public function imprimer_liste_admis()
+    public function afficher_liste_admis()
     {
         $localisation='all';
         $id=0;
@@ -173,7 +173,7 @@ class ShowAvisPermutation extends Component
             break;
             default:$localisation ='all';break;
         }
-        redirect()->route('liste-permutation',['localite'=>$localisation,'id'=>$id]);
+        redirect()->route('admis',['localite'=>$localisation,'id'=>$id]);
     }
     public function valider_avis($avis_id)
     {

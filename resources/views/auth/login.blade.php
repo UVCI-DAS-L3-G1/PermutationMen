@@ -1,8 +1,14 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <div class="flex items-center flex-col">
+           <x-jet-authentication-card-logo/></p>
+            <p class="text-bold text-lg text-center">Ministère de l'éducation nationale et de l'alphabétisation</p>
+            <p class="text-black text-lg text-center">GESTION DES DEMANDES DE PERMUTATION</p>
+
+           </div>
         </x-slot>
+
 
        <x-jet-validation-errors class="mb-4" />
 

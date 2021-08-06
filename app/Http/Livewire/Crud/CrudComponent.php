@@ -42,7 +42,7 @@ abstract class CrudComponent extends Component
     }
     public function apply()
     {
-       /* try {
+        try {
             $this->validate();
             $this->save();
             session()->flash('message', 'Enregistré avec succès');
@@ -54,15 +54,11 @@ abstract class CrudComponent extends Component
             if ($e->getCode() === CrudComponent::DUPLICATE_QUERY_CODE) {
                 session()->flash('errors', 'Doublon détecté');
             }
+            echo 'Doublon détecté';
         }
-        */
-         
-            $this->validate();
-            $this->save();
-            session()->flash('message', 'Enregistré avec succès');
-            $this->resetData();
-            //$this->closeModal();
-            $this->saved = true;
+
+
+
 
     }
 

@@ -11,6 +11,7 @@ use App\Http\Livewire\Crud\ShowParametre;
 use App\Http\Livewire\Pdf\FicheDemandePermutation;
 use App\Http\Livewire\PostPublication;
 use App\Http\Livewire\RegisterAgent;
+use App\Http\Livewire\ShowAdmisListe;
 use App\Http\Livewire\ShowMyDashboard;
 use App\Http\Livewire\ShowAvisPermutation;
 use App\Http\Livewire\ShowProfile;
@@ -34,19 +35,27 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified', 'registration_completed'])->group(function () {
     Route::get('/dashboard', ShowMyDashboard::class)->name('my_dashboard');
     Route::get('/publications', ShowAvisPermutation::class)->name('publications');
+    Route::get('/liste-permutation/{localite}/{id}', ShowAdmisListe::class)
+    ->where('localite','(dren|iep|ecole|all)')->whereNumber('id')->name('admis');
     Route::get('/post-publications', PostPublication::class)->name('post-publications')
     ->middleware('canPublish');
     Route::get('/show-profile/{id}', ShowProfile::class)->name('show-profile');
     Route::get('/fiche-demande/{id}', [PdfController::class,'getFicheDemande'])->name('fiche-demande');
     Route::get('/acte-permutation/{id}', [PdfController::class,'getActePermutation'])->name('acte-permutation');
-    Route::get('/liste-permutation/{localite}/{id}',
-    [PdfController::class,'getListePermutation'])
-    ->where('localite','(dren|iep|ecole|all)')
-    ->whereNumber('id')
+    Route::get('/acte-permutation/{localite}/{id}',
+    [PdfController::class,'getMultiActePermutation'])->where('localite','(dren|iep|ecole|all)')->whereNumber('id')
+    ->name('actes-permutations');
+    Route::get('/pdf-liste-permutation/{localite}/{id}',
+    [PdfController::class,'getListePermutation'])->where('localite','(dren|iep|ecole|all)')->whereNumber('id')
     ->name('liste-permutation');
+
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/complete-registration', RegisterAgent::class)->name('complete-registration');
+
+});
+Route::middleware(['auth:sanctum', 'verified','isSuperAdmin'])->group(function () {
     Route::get('/parametres', ShowParametre::class)->name('parametres');
     Route::get('/drens', ShowDren::class)->name('drens');
     Route::get('/emplois', ShowEmploi::class)->name('emplois');
@@ -54,6 +63,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/disciplines', ShowDiscipline::class)->name('disciplines');
     Route::get('/ieps', ShowIep::class)->name('ieps');
     Route::get('/ecoles', ShowEcole::class)->name('ecoles');
-    Route::get('/complete-registration', RegisterAgent::class)->name('complete-registration');
-
 });

@@ -55,7 +55,7 @@ class PublicationManager
     }
     public function imprimer()
     {
-        
+
         redirect()->route('fiche-demande',['id'=>$this->avis->id]);
 
     }
@@ -109,6 +109,7 @@ class PublicationManager
     public function annulerReservation()
     {
         $avis =  $this->avis;
+        $agent_id = $avis->agentFavorable->id;
         if (!is_null($avis)) {
             $avis->etat = AvisPermutation::libre();
             $avis->date_reservation = null;
@@ -117,7 +118,7 @@ class PublicationManager
 
                 $this->editOtherEtat(AvisPermutation::libre());
                 //Appel EmailManager pour envoie de mail au demandeur que la reservation a ete annule
-                EmailHelper::SendIsAvisReservationCanceled($avis);
+                EmailHelper::SendIsAvisReservationCanceled($avis,$agent_id );
             };
         }
     }
@@ -135,6 +136,7 @@ class PublicationManager
     public function annulerConfirmation()
     {
         $avis = $this->avis;
+        $agent_id = $avis->agentFavorable->id;
         if (!is_null($avis)) {
             $avis->etat = AvisPermutation::libre();
             $avis->date_confirmation = null;
@@ -144,7 +146,7 @@ class PublicationManager
 
                 $this->editOtherEtat(AvisPermutation::libre());
                 //Appel EmailManager pour envoie de mail au demandeur que la reservation a ete annule
-                EmailHelper::SendIsAvisConfirmationCanceled($avis);
+                EmailHelper::SendIsAvisConfirmationCanceled($avis,$agent_id);
             };
         }
     }
@@ -171,7 +173,7 @@ class PublicationManager
 
                 //$this->editOtherEtat(AvisPermutation::inactif());
                 //Appel EmailManager pour envoie de mail au demandeur que la reservation a ete annule
-
+                EmailHelper::SendIsAvisValidatationCanceled($avis);
             };
         }
     }

@@ -25,10 +25,7 @@ class ShowDiscipline extends CrudComponent
     {
         $this->discipline->save();
     }
-    public function saveMany()
-    {
-
-    }
+     
 
     public function loadData($id)
     {

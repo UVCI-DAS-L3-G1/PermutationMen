@@ -72,6 +72,6 @@ class AppConfig
     public static function isFirstUser()
     {
         $nbre = User::count();
-        return $nbre>0;
+        return $nbre==0;
     }
 }

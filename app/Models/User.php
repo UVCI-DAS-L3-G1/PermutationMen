@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Pct\AppConfig;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -53,7 +54,9 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'birthdate'=> 'datetime'
     ];
+
 
     /**
      * The accessors to append to the model's array form.
@@ -79,5 +82,10 @@ class User extends Authenticatable
     }
     public function role(){
         return array_search($this->attributes['user_type'],self::ROLE);
+    }
+    public static function getUserType():int
+    {
+        $res = AppConfig::isFirstUser()?3: 1;
+        return $res;
     }
 }

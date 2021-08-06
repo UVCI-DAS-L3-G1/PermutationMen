@@ -1,12 +1,16 @@
 @component('mail::message')
-# Introduction
 
-The body of your message.
+{{$avis->agentDemandeur->user->name}}<br>
+E-mail : {{$avis->agentDemandeur->user->email}}<br>
+Tél.: {{$avis->agentDemandeur->user->mobile_phone}}<br>
+Tél.:{{$avis->agentDemandeur->user->office_phone}}<br>
+Dren:{{$avis->agentDemandeur->ecole->iep->dren->nom}}<br>
+IEP:{{$avis->agentDemandeur->ecole->iep->nom}}<br>
+Ecole:{{$avis->agentDemandeur->ecole->nom}}<br>
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+n'est plus disposer à permuter avec vous<br>
 
-Thanks,<br>
+Merci,<br>
 {{ config('app.name') }}
 @endcomponent
+

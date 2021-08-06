@@ -60,7 +60,7 @@ class ShowParametre extends CrudComponent
         AppConfig::telephone();
         AppConfig::pagination();
         AppConfig::auto_reservation();
-        AppConfig::auto_reservation();
+        AppConfig::isOpened();
 
         return view('livewire.crud.show-parametre',['parametres'=>Parametre::orderBy('attribut')->paginate(50)]);
     }

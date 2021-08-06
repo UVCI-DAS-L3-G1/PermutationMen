@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Pct\PctHelper;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class EnsureAutorizationToPublish 
+class EnsureIsSuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,7 @@ class EnsureAutorizationToPublish
      */
     public function handle(Request $request, Closure $next)
     {
-        if (PctHelper::canPublish()) {
-            return $next($request);
-        }
-        return redirect()->route('publications');
+        if(Auth::user()->isSuperAdmin())return $next($request);
+        return response('Page introuvable',404);
     }
 }

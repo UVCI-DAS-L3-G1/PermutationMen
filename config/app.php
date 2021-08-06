@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Permutation'),
+    'name' => 'Gestion des Permutations',
 
     /*
     |--------------------------------------------------------------------------

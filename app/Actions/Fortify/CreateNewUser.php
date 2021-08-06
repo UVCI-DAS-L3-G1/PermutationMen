@@ -31,12 +31,13 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return User::create([
+
             'name' => $input['name'],
             'maiden_name' => $input['maiden_name'],
             'mobile_phone'=>$input['mobile_phone'],
             'office_phone'=>$input['office_phone'],
             'birthdate' => $input['birthdate'],
-            'user_type' =>AppConfig::isFirstUser()?3: 1,
+            'user_type' =>User::getUserType(),
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);

@@ -31,6 +31,7 @@
                 </div>
                 @endif
 
+
                 @if (!Auth::user()->isUser())
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('drens') }}" :active="request()->routeIs('drens')">
@@ -210,7 +211,7 @@
 
                                 <!-- Account Management -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Manage Account') }}
+                                    {{ __('Gérer mon compte') }}
                                 </div>
 
                                 <x-jet-dropdown-link href="{{ route('profile.show') }}">
@@ -231,7 +232,7 @@
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                        {{ __('Log Out') }}
+                                        {{ __('Se déconnecter') }}
                                     </x-jet-dropdown-link>
                                 </form>
                             </x-slot>
@@ -278,6 +279,7 @@
             </x-jet-responsive-nav-link>
         </div>
         @endif
+
 
 
         @if (!Auth::user()->isUser())

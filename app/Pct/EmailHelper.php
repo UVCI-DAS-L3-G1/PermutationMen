@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailHelper
 {
-    public static function SendIsAvisReservationCanceled(AvisPermutation $avis, $agent_id){
+    public static function SendIsAvisReservationCanceled($avis, $agent_id){
         $to = $avis->agentDemandeur->user->email;
         $agent = Agent::findOrFail($agent_id);
-        $cc = $$agent->user->email;
-        $message = new AvisReservationCanceled($avis,$agent);
+        $cc = $agent->user->email;
+        $message = new AvisReservationCanceled($agent);
         self::Send($to,$message,$cc);
 
     }
@@ -26,7 +26,7 @@ class EmailHelper
         $cc = $avis->agentDemandeur->user->email;
         $agent = Agent::findOrFail($agent_id);
         $to = $agent->user->email;
-        $message = new AvisConfirmationCanceled($avis,$agent);
+        $message = new AvisConfirmationCanceled($avis);
         self::Send($to,$message,$cc);
 
     }

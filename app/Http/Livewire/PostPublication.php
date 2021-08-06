@@ -40,8 +40,10 @@ class PostPublication extends Component
         if(!$canPub) return;
         $manager =new PublicationManager();
         $res = $manager->publier($ecole_id);
-        session()->flash('message',$res?'Avis publié':'Avis non publié');
+        session()->flash('flash.banner',$res?'Avis publié':'Avis non publié');
+        session()->flash('flash.bannerStyle',$res?'success':'danger');
         $this->refreshData();
+        //return redirect('/');
     }
 
     public function refreshData()

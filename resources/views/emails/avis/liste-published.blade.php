@@ -1,12 +1,13 @@
 @component('mail::message')
-# Introduction
+ 
 
-The body of your message.
-
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::panel')
+La liste des permutation est disponible.
+@component('mail::button', ['url' => $consultationAvisUrl])
+Consulter
+@endcomponent
 @endcomponent
 
-Thanks,<br>
+Merci,<br>
 {{ config('app.name') }}
 @endcomponent

@@ -16,4 +16,7 @@ class PdfController extends Controller
     public function getListePermutation($localite,$id){
         return PdfHelper::genereListePermutation($localite,$id);
     }
+    public function getMultiActePermutation($localite,$id){
+        return PdfHelper::genereActePermutationZip($localite,$id);
+    }
 }

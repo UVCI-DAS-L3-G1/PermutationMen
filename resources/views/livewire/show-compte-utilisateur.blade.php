@@ -1,4 +1,4 @@
-<div class="md:grid md:grid-cols-3 md:gap-6">
+<div>
     <div>
         <x-jet-section-title>
             <x-slot name="title">{{ __('Comptes d\'utilisateurs') }}</x-slot>
@@ -10,7 +10,7 @@
     </div>
 
 
-    <div class="col-span-8 sm:col-span-4">
+    <div>
         <div class="ml-3">
 
 
@@ -46,21 +46,29 @@
                             <td class="border px-4 py-2">{{$compte->office_phone }}</td>
                             <td class="border px-4 py-2">{{$compte->role()}}</td>
                             <td class="border px-4 py-2">{{$compte->created_at }}</td>
-                            <td class="border px-4 py-2 text-right">
+                            <td class="border px-4 py-2 text-right w-16">
 
 
-                                <div> <x-jet-button wire:click="edit({{ $compte->id}},{{ 1}})">
+                                <div class="flex">
+
+
+                                    <x-jet-button wire:click="edit({{$compte->id}},{{1}})">
                                     {{ __('U') }}
-                                </x-jet-button>
-                                <x-jet-button wire:click="edit({{ $compte->id}},{{2}})">
+                                    </x-jet-button>
+                                    <x-jet-button wire:click="edit({{$compte->id}},{{2}})">
                                     {{ __('A') }}
-                                </x-jet-button>
-                                <x-jet-button wire:click="edit({{ $compte->id}},{{ 3}})">
-                                    {{ __('S') }}
-                                </x-jet-button></div>
-                                <div><x-jet-danger-button wire:click="delete({{ $compte->id }})">
+                                    </x-jet-button>
+
+
+                                    <x-jet-button wire:click="edit({{$compte->id}},{{3}})">
+                                        {{ __('S') }}
+                                    </x-jet-button>
+                                    <x-jet-danger-button
+                                    wire:click="delete({{ $compte->id }})">
                                     {{ __('D') }}
-                                </x-jet-danger-button></div>
+                                    </x-jet-danger-button>
+
+                                </div>
 
 
 

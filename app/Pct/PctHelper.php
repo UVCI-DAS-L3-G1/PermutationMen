@@ -17,6 +17,64 @@ use Illuminate\Support\Facades\Log;
 
 class PctHelper
 {
+    public static function getResultatPermutations($location,$id)
+    {
+        $avis =self::genereListePermutationQuery($location,$id)->get();
+        return self::genereListePermutationAdmis($avis);
+    }
+    public static function genereListePermutationAdmis($avis_permutations)
+    {
+        $avis_admis =[];
+        foreach($avis_permutations as $avis)
+        {
+            $admisDem = new Admis();
+            $admisDem->id = $avis->id;
+            $admisDem->matricule = $avis->agentDemandeur->matricule;
+            $admisDem->nom = $avis->agentDemandeur->user->name;
+            $admisDem->ecoleOrigine = $avis->agentDemandeur->ecole->nom;
+            $admisDem->ecoleDestination = $avis->ecole->nom;
+
+            $admisFav = new Admis();
+            $admisFav->id = $avis->id;
+            $admisFav->matricule = $avis->agentFavorable->matricule;
+            $admisFav->nom = $avis->agentFavorable->user->name;
+            $admisFav->ecoleOrigine = $avis->agentFavorable->ecole->nom;
+            $admisFav->ecoleDestination = $avis->agentDemandeur->ecole->nom;
+
+            array_push($avis_admis,$admisDem);
+            array_push($avis_admis,$admisFav);
+        }
+        usort($avis_admis,fn($a,$b)=>strcmp($a->nom,$b->nom));
+        return $avis_admis;
+    }
+    public static function genereListePermutationQuery($location,$id)
+    {
+
+        $q='';
+        $query=AvisPermutation::query()
+        ->select("avis_permutations.*")
+        ->join('agents', 'avis_permutations.agent_demandeur_id', '=', 'agents.id')
+        ->join('users', 'agents.id', '=', 'users.id')
+        ->join('ecoles', 'agents.ecole_id', '=', 'ecoles.id')
+        ->join('ieps', 'ecoles.iep_id', '=', 'ieps.id')
+        ->join('drens', 'ieps.dren_id', '=', 'drens.id')
+        ->where('etat',AvisPermutation::valide()) ;
+
+        switch ($location)
+        {
+            case 'dren':
+            $q = $query->where('drens.id',$id);
+            break;
+            case 'iep':
+                $q = $query->where('ieps.id',$id);
+            break;
+            case 'ecole':
+                $q = $query->where('ecoles.id',$id);
+            break;
+            default: $q = $query;break;
+        }
+        return $q;
+    }
     public static function canPublish()
     {
         if(!AppConfig::isOpened()) return false;

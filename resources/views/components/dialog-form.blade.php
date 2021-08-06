@@ -36,7 +36,8 @@
                     {{ __('Enregistrer') }}
                 </x-jet-button>
                 <x-apply-button wire:click="apply"
-                                wire:keydown.plus="apply" class="mr-3">Appliquer</x-apply-button>
+                                wire:keydown.plus="apply" class="mr-3"
+                                >{{__('Appliquer')}}</x-apply-button>
             </div>
 
         </form>

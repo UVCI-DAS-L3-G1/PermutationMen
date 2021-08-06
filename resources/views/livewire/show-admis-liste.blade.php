@@ -8,6 +8,37 @@
     <div class="flex justify-center bg-white overflow-hidden shadow-xl sm:rounded-lg">
         <div class="flex flex-row px-4 py-2">
             <div class="ml-3">
+
+
+                    @if (Auth::user()->isAdmin())
+                    <div class="text-right">
+                        @if ($this->canPrintListeAdmis())
+                        <x-jet-button wire:click='imprimer_liste_admis'>
+                            Imprimer la listes des demandes validées
+                        </x-jet-button>
+                        <x-jet-button wire:click='imprimer_acte_permutation(0)'>
+                            Imprimer les actes de permutation
+                        </x-jet-button>
+
+                        @else
+                        <x-jet-button disabled class="opacity-50 cursor-not-allowed" wire:click='imprimer_liste_admis'>
+                            Imprimer la listes des demandes validées
+                        </x-jet-button>
+                        <x-jet-button disabled class="opacity-50 cursor-not-allowed" wire:click='imprimer_acte_permutation(0)'>
+                            Imprimer les actes de permutation
+                        </x-jet-button>
+                        @endif
+                    </div>
+                    @endif
+
+
+
+
+
+                @if ($this->anyItems())
+                <div class="mt-4">
+                    {{$avis_permutations->links()}}
+                </div>
                 <div class="mt-4">
                     <table class="table table-fixed w-full">
                         <thead>
@@ -18,7 +49,7 @@
                                 <th class="px-4 py-2 ">Nom et prénoms</th>
                                 <th class="px-4 py-2 ">Ecole d'origine</th>
                                 <th class="px-4 py-2 ">Ecole de destination</th>
-
+                                <th class="px-4 py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,7 +62,14 @@
                                 <td class="border px-4 py-2">{{$admis->nom}}</td>
                                 <td class="border px-4 py-2">{{$admis->ecoleOrigine}}</td>
                                 <td class="border px-4 py-2">{{$admis->ecoleDestination}}</td>
+                                <td class="border px-4 py-2 text-right">
 
+                                    @if (Auth::user()->isAdmin())
+                                    <x-jet-button wire:click="imprimer_acte_permutation({{ $admis->id }})">
+                                        {{ __('Acte de permutation') }}
+                                    </x-jet-button>
+                                    @endif
+                                </td>
                             </tr>
 
                             @endforeach
@@ -40,8 +78,10 @@
 
 
                 </div>
-
-
+                <div class="mt-4">
+                    {{$avis_permutations->links()}}
+                </div>
+                @endif
 
 
             </div>

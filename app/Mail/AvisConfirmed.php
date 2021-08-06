@@ -11,7 +11,6 @@ class AvisConfirmed extends Mailable
 {
     use Queueable, SerializesModels;
     public $avis;
-    public $pdfUrls;
     /**
      * Create a new message instance.
      *

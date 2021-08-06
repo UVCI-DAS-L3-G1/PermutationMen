@@ -4,7 +4,7 @@
     </h2>
 </x-slot>
 
-<div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+<div class="mx-auto py-10 sm:px-6 lg:px-8">
     <div class="flex justify-center bg-white overflow-hidden shadow-xl sm:rounded-lg">
         <div class="flex flex-row px-4 py-2">
             <div>
@@ -212,12 +212,13 @@
 
 
             </div>
+
             <div class="ml-3">
-                {{--Bouton de creation--}}
 
 
-                @if ($this->isRegistered())
-                <div class="text-right">
+                <div class="flex flex-inline text-right">
+                        @if ($this->isRegistered())
+                        <div >
 
                         @if ($this->canPublish())
                         <x-jet-button wire:click='publier'>
@@ -231,24 +232,25 @@
                         @endif
 
 
+                        </div>
+                        @endif
+
+                @if (!App\Pct\AppConfig::isOpened())
+                <div class="ml-4">
+                    @if ($this->canPrintListeAdmis())
+                    <x-jet-button wire:click='afficher_liste_admis'>
+                    Demandes validées
+                    </x-jet-button>
+
+                    @else
+                    <x-jet-button disabled class="opacity-50 cursor-not-allowed"
+                    wire:click='afficher_liste_admis'>
+                    Demandes validées
+                    </x-jet-button>
+                    @endif
                 </div>
                 @endif
-
-                @if (Auth::user()->isAdmin())
-                <div class="text-right">
-                @if ($this->canPrintListeAdmis())
-                <x-jet-button wire:click='imprimer_liste_admis'>
-                Imprimer la listes des demandes validées
-                </x-jet-button>
-
-                @else
-                <x-jet-button disabled class="opacity-50 cursor-not-allowed"
-                wire:click='imprimer_liste_admis'>
-                Imprimer la listes des demandes validées
-                </x-jet-button>
-                @endif
                 </div>
-                @endif
 
 
                 {{-- Tableau  --}}
@@ -289,7 +291,7 @@
                                 <td class="border px-4 py-2">{{$avis_permutation->ecole->nom}}</td>
                                 @endif
 
-                                <td class="border px-4 py-2">{{ $avis_permutation->date_publication }}</td>
+                                <td class="border px-4 py-2">{{ $avis_permutation->date_publication->format('d/m/Y H:m:s') }}</td>
                                 <!--<td class="border px-4 py-2">{{--$avis_permutation->agentFavorable?->user->name--}}</td>-->
                                 <!--<td class="border px-4 py-2">{{-- $avis_permutation->date_reservation --}}</td>-->
                                 <td class="border px-4 py-2">{{ $avis_permutation->getEtatString() }}</td>

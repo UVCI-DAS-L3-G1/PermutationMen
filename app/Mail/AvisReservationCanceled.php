@@ -11,16 +11,15 @@ class AvisReservationCanceled extends Mailable
 {
     use Queueable, SerializesModels;
     public $agent;
-    public $avis;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($avis,$agent)
+    public function __construct($agent)
     {
-        $this->avis=$avis;
+        
         $this->agent=$agent;
     }
 
