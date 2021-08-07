@@ -102,7 +102,7 @@
                             <div class="w-60">
                                 <!-- Team Management -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Gérer l'équipe') }}
+                                    {{ __('Gérer l\'équipe') }}
                                 </div>
 
                                 <!-- Team Settings -->
@@ -120,7 +120,7 @@
 
                                 <!-- Team Switcher -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Changer d\équipe') }}
+                                    {{ __('Changer d\'équipe') }}
                                 </div>
 
                                 @foreach (Auth::user()->allTeams() as $team)
@@ -260,13 +260,13 @@
                 <div class="border-t border-gray-200"></div>
 
                 <div class="block px-4 py-2 text-xs text-gray-400">
-                    {{ __('Gérer l\équipe') }}
+                    {{ __('Gérer l\'équipe') }}
                 </div>
 
                 <!-- Team Settings -->
                 <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}"
                     :active="request()->routeIs('teams.show')">
-                    {{ __('Paramètre d\équipe') }}
+                    {{ __('Paramètre d\'équipe') }}
                 </x-jet-responsive-nav-link>
 
                 @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
@@ -280,7 +280,7 @@
 
                 <!-- Team Switcher -->
                 <div class="block px-4 py-2 text-xs text-gray-400">
-                    {{ __('Changer d\équipe') }}
+                    {{ __('Changer d\'équipe') }}
                 </div>
 
                 @foreach (Auth::user()->allTeams() as $team)
