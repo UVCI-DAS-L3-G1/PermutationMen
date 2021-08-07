@@ -5,12 +5,12 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Merci de vous être inscrit! Avant de commencer, vérifier votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer? Si vous n'avez pas reçu l'email, nous vous en enverrons un autre avec plaisir.') }}
+            {{ __('Merci de vous être inscrit! Avant de commencer, vérifier votre adresse email en cliquant sur le lien que nous venons de vous envoyer? Si vous n\'avez pas reçu l\'email, nous vous en enverrons un autre avec plaisir.') }}
         </div>
 
         @if (session('status') == 'verification-link-sent')
             <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('Un nouveau lien de vérification a été envoyé à l'adresse email que vous avez fournie lors de l'inscription.') }}
+                {{ __('Un nouveau lien de vérification a été envoyé à l\'adresse email que vous avez fournie lors de l\'inscription.') }}
             </div>
         @endif
 
@@ -20,7 +20,7 @@
 
                 <div>
                     <x-jet-button type="submit">
-                        {{ __('Renvoyer l'Email de Vérification') }}
+                        {{ __('Renvoyer l\'Email de Vérification') }}
                     </x-jet-button>
                 </div>
             </form>
