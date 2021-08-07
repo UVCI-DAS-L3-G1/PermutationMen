@@ -22,7 +22,7 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirmation mot de passe') }}" />
+                <x-jet-label for="password_confirmation" value="{{ __('Confirmation du mot de passe') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
